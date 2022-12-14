@@ -1,0 +1,52 @@
+
+<div class="container">
+<div class="text-center"> <h2>Customer List!</h2> 
+</div>
+
+
+<div class="row">
+    <div class="col">
+        Grouping:    
+        <select class="form-select" [(ngModel)]="customerGroupOptSel">
+            <option selected value="">Select an option</option>
+            <option *ngFor="let group of customerGroupOptions"  value={{group.option}}>{{group.name}}</option>
+          </select> 
+    </div>
+    <div class="col">
+        Filter
+        <input type="text" class="form-input" [(ngModel)]="customerFilter"/>
+    </div>
+    <div class="col">
+        Sort:    
+        <select class="form-select" [(ngModel)]="customeSortSel">
+            <option *ngFor="let sort of customerSortOptions"  value={{sort.option}}>{{sort.name}}</option>
+          </select> 
+    </div>
+    <div class="col">
+        <button type="button" (click)="downloadFile()" >Download</button>
+    </div>
+  </div>
+
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>id</th>
+            <th>Customer Root</th>
+            <th>Customer Leaf</th>
+            <th>Product Description</th>
+            <th>Manufacturer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let customer of customers  | customerFilter:customerFilter | customerSort:customeSortSel">
+            <td>{{customer.id}}</td>
+            <td>{{customer.customer_root}}</td>
+            <td>{{customer.customer_leaf}}</td>
+            <td>{{customer.product_description}}</td>
+            <td>{{customer.manufacturer}}</td>
+        </tr>
+    </tbody>
+  
+
+</table></div>
